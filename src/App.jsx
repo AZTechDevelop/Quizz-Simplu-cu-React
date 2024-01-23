@@ -1,30 +1,21 @@
+// src/App.js
 import React, { useState } from 'react';
 import './App.css';
-
-const questions = [
-  {
-    question: 'Care este capitala Franței?',
-    options: ['Berlin', 'Londra', 'Paris', 'Madrid'],
-    correctAnswer: 'Paris',
-  },
-  {
-    question: 'Care este capitala Japoniei?',
-    options: ['Seul', 'Tokyo', 'Beijing', 'Hanoi'],
-    correctAnswer: 'Tokyo',
-  },
-];
+import Quiz from './quizComponents/Quiz';
+import Score from './quizComponents/Score';
+import questions from './quizComponents/Question';
 
 function App() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const handleAnswerClick = (selectedAnswer) => {
     if (selectedAnswer === questions[currentQuestion].correctAnswer) {
       setScore(score + 1);
     }
 
-    if (currentQuestion + 1 < questions.length) {
+    if (currentQuestion + 1 < 9) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowScore(true);
@@ -40,22 +31,13 @@ function App() {
   return (
     <div className="App">
       {showScore ? (
-        <div className="score-section">
-          <h2>Scorul tău este {score} din {questions.length}</h2>
-          <button onClick={restartQuiz}>Reia quiz-ul</button>
-        </div>
+        <Score score={score} totalQuestions={questions.length} onRestart={restartQuiz} />
       ) : (
-        <div className="question-section">
-          <h2>Întrebare {currentQuestion + 1}:</h2>
-          <p>{questions[currentQuestion].question}</p>
-          <div className="answer-section">
-            {questions[currentQuestion].options.map((option) => (
-              <button key={option} onClick={() => handleAnswerClick(option)}>
-                {option}
-              </button>
-            ))}
-          </div>
-        </div>
+        <Quiz
+          question={questions[currentQuestion]}
+          onAnswerClick={handleAnswerClick}
+          questionNumber={currentQuestion + 1}
+        />
       )}
     </div>
   );

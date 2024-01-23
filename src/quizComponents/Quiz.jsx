@@ -1,41 +1,20 @@
-import React, { useState } from 'react';
-import Question from './Question.jsx';
+// src/components/Quiz.js
+import React from 'react';
 
-const quizData = [
-  {
-    question: 'Care este capitala Elvetiei?',
-    options: ['Berlin', 'Paris', 'Viena', 'Madrid'],
-    correctAnswer: 'Berlin',
-  },
-];
-
-function Quiz() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
-
-  const handleAnswer = (selectedAnswer) => {
-    if (selectedAnswer === quizData[currentQuestion].correctAnswer) {
-      setScore(score + 1);
-    }
-
-    const nextQuestion = currentQuestion + 1;
-
-    if (nextQuestion < quizData.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      alert(`Quiz complet, scorul tau este ${score}`);
-    }
-  };
-
+const Quiz = ({ question, onAnswerClick, questionNumber }) => {
   return (
-    <div className="quiz">
-      <Question
-        question={quizData[currentQuestion].question}
-        options={quizData[currentQuestion].options}
-        handleAnswer={handleAnswer}
-      />
+    <div className="question-section">
+      <h2>Întrebare {questionNumber}:</h2>
+      <p>{question.question}</p>
+      <div className="answer-section">
+        {question.options.map((option) => (
+          <button key={option} onClick={() => onAnswerClick(option)}>
+            {option}
+          </button>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default Quiz;
