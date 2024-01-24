@@ -15,7 +15,7 @@ function App() {
       setScore(score + 1);
     }
 
-    if (currentQuestion + 1 < 9) {
+    if (currentQuestion  < 9) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowScore(true);
