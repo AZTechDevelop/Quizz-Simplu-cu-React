@@ -1,4 +1,4 @@
-// src/components/Score.js
+
 import React from 'react';
 
 const Score = ({ score, totalQuestions, onRestart }) => {
