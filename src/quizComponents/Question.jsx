@@ -1,4 +1,4 @@
-// src/quizComponents/Question.js
+
 const questions = [
   {
     question: 'Care este capitala Albaniei?',
