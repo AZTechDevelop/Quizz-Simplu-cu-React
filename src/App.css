@@ -1,4 +1,7 @@
 
+body{
+  background-color:rgb(188, 188, 214);
+}
 .App {
   text-align: center;
   margin-top: 50px;
@@ -6,6 +9,8 @@
 
 
 .question-section {
+  width:70%;
+  margin:auto;
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
@@ -23,8 +28,15 @@ button {
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
+  transition:all 1s;
+  border:2px solid black;
+  color:black;
+
 }
 
+button:hover{
+  background-color:bisque;
+}
 
 .score-section {
   background-color: #f5f5f5;

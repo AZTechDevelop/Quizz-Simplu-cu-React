@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import './App.css';
+
 import Quiz from './quizComponents/Quiz';
 import Score from './quizComponents/Score';
 import questions from './quizComponents/Question';
@@ -11,14 +11,17 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const handleAnswerClick = (selectedAnswer) => {
+    if(currentQuestion < 9)
     if (selectedAnswer === questions[currentQuestion].correctAnswer) {
       setScore(score + 1);
-    }
-
-    if (currentQuestion  < 9) {
       setCurrentQuestion(currentQuestion + 1);
-    } else {
-      setShowScore(true);
+    }
+      else{
+        setCurrentQuestion(currentQuestion)
+        setScore(score-1)
+      }
+    else{
+      setShowScore(true)
     }
   };
 
@@ -27,6 +30,7 @@ function App() {
     setScore(0);
     setShowScore(false);
   };
+
 
   return (
     <div className="App">
